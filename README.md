@@ -96,7 +96,7 @@ TimescaleDB can be installed via a variety of ways:
 
 We recommend following our detailed [installation instructions](http://docs.timescale.com/getting-started/installation).
 
-#### Building from source
+#### Building from source (Unix-based systems)
 
 **Prerequisites**:
 
@@ -119,6 +119,32 @@ make install
 ```
 
 Please see our [additional configuration instructions](http://docs.timescale.com/getting-started/installation#update-postgresql-conf).
+
+#### Building from source (Windows)
+
+**Prerequisites**:
+
+- A standard [PostgreSQL 9.6 64-bit installation](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads#windows) 
+- Microsoft Visual Studio
+- [CMake](https://cmake.org/) version 3.4 or greater
+- Make sure all relevant binaries are in your PATH: `pg_config`, `cmake`, `MSBuild`
+
+```bash
+git clone git@github.com:timescale/timescaledb.git
+cd timescaledb
+
+# Bootstrap the build system
+./bootstrap.bat
+
+# To build the extension from command line
+cd build
+MSBuild.exe timescaledb.sln
+
+# Alternatively, open build/timescaledb.sln in Visual Studio and build
+```
+
+Note: Currently the build process reports errors (unresolved variables) but actually succeeds and creates the proper .dll. You can safely ignore those errors as long as it
+also says "Build successful".
 
 
 ### Additional documentation
